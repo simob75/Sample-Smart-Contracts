@@ -1,1 +1,20 @@
 
+pragma solidity ^0.4.24;
+
+contract Bank{
+    struct Account {
+        address addr;
+        uint amount;
+    }
+    
+    Account public acc = Account ({
+        addr : 0x14723a09acff6d2a60dcdf7aa4aff308fddc160c,
+        amount : 900
+    });
+    
+    function addAmount(uint _amount) public {
+        require(acc.amount + _amount >= acc.amount); //check overflow
+        acc.amount += _amount;
+    }
+    
+}
