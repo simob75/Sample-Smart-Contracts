@@ -22,3 +22,24 @@ contract Messenger {
     }
     
 }
+
+contract SampleContract {
+    uint256 public publicNumber = 1; //the compiler automatically creates getter functions for all public state variables
+    uint8 private secretNumber = 2;
+    
+    function getSecret() public view returns(uint8){
+        return secretNumber;   
+    }
+}
+
+contract MessageContract{
+    string private message = "Hello World";
+    
+    function getMessage() public view returns(string) {
+        return message;
+    }
+    
+    function setMessage(string _message) public {
+        message = _message;
+    } 
+}
