@@ -1,0 +1,34 @@
+pragma solidity ^0.4.24;
+
+contract SimpleToken{
+    address public owner;
+    mapping(address => uint256) public accounts;
+    
+    constructor(uint256 initialSupply) public payable {
+        owner = msg.sender;
+        accounts[msg.sender] = initialSupply;
+    }
+    
+    function transfer(address to, uint256 value) public payable {
+        
+        require(accounts[msg.sender] >= value); //check balance;
+        require((accounts[to] += value) >= accounts[to]); //check overflow
+        accounts[msg.sender] -= value; //subtract and add balance
+        accounts[to]+= value;
+    }
+    
+    function getBalance(address _account) public view returns(uint256){
+        return accounts[_account];
+    }
+}
+
+contract TestBalance{
+mapping(address => uint)owner;
+
+function show() view public returns(uint, uint) {
+   return (owner[msg.sender], msg.sender.balance);
+   //return owner[msg.sender]; //amount of tokens owned by msg.sender
+   //return msg.sender.balance; //amount of ether owned by msg.sender
+}
+
+}
