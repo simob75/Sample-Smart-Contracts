@@ -1,7 +1,7 @@
-
 pragma solidity ^0.4.24;
 
 contract Bank{
+    address private owner = msg.sender;
     struct Account {
         address addr;
         uint amount;
@@ -13,6 +13,7 @@ contract Bank{
     });
     
     function addAmount(uint _amount) public {
+       	require (owner == msg.sender);	
         require(acc.amount + _amount >= acc.amount); //check overflow
         acc.amount += _amount;
     }
