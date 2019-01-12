@@ -1,0 +1,24 @@
+pragma solidity ^0.4.24;
+
+contract Messenger {
+    address owner;
+    string[] messages;
+    
+    constructor() public {
+        owner = msg.sender; //this line defines the owner as the person who has deployed the contract
+    }
+    
+    function add(string _message) public {
+        require(msg.sender == owner); //this line will prevent anyone who is not the owner of the contract to add messages to the array
+        messages.push(_message);
+    }
+    
+    function countMessages() public view returns(uint) {
+        return messages.length;
+    }
+    
+    function getMessages(uint _index) view public returns (string) {
+        return messages[_index];
+    }
+    
+}
